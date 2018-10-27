@@ -81,7 +81,7 @@ public class MobileSignalController extends SignalController<
     private ServiceState mServiceState;
     private SignalStrength mSignalStrength;
     private MobileIconGroup mDefaultIcons;
-    private Config mConfig; 
+    private Config mConfig;
 
     private boolean mVoLTEicon;
 
@@ -129,12 +129,11 @@ public class MobileSignalController extends SignalController<
                 updateTelephony();
             }
         };
-    }
 
-    Handler mHandler = new Handler();
-        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
-        settingsObserver.observe();
-    }
+     Handler mHandler = new Handler();
+         SettingsObserver settingsObserver = new SettingsObserver(mHandler);
+         settingsObserver.observe();
+     }
 
     class SettingsObserver extends ContentObserver {
           SettingsObserver(Handler handler) {
@@ -162,7 +161,7 @@ public class MobileSignalController extends SignalController<
 
           mVoLTEicon = Settings.System.getIntForUser(resolver,
                 Settings.System.SHOW_VOLTE_ICON, 1,
-                UserHandle.USER_CURRENT) == 1
+                UserHandle.USER_CURRENT) == 1;
 
           mapIconSets();
         updateTelephony();
