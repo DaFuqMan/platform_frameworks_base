@@ -15,6 +15,7 @@
  */
 package com.android.systemui.statusbar.policy;
 
+import android.content.ContentResolver;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -23,7 +24,10 @@ import android.content.res.Resources;
 import android.database.ContentObserver;
 import android.net.NetworkCapabilities;
 import android.os.Handler;
+import android.net.Uri;
 import android.os.Looper;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.provider.Settings.Global;
 import android.telephony.ims.ImsReasonInfo;
 import android.telephony.ims.stub.ImsRegistrationImplBase;
@@ -127,6 +131,11 @@ public class MobileSignalController extends SignalController<
         };
     }
 
+    Handler mHandler = new Handler();
+        SettingsObserver settingsObserver = new SettingsObserver(mHandler);
+        settingsObserver.observe();
+    }
+
     class SettingsObserver extends ContentObserver {
           SettingsObserver(Handler handler) {
               super(handler);
@@ -138,6 +147,15 @@ public class MobileSignalController extends SignalController<
                     this, UserHandle.USER_ALL);
             updateSettings();
         }
+
+     /*
+      *  @hide
+      */
+          @Override
+          public void onChange(boolean selfChange) {
+              updateSettings();
+          }
+      }
 
     private void updateSettings() {
           ContentResolver resolver = mContext.getContentResolver();
