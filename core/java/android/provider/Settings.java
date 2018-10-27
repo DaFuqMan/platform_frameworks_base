@@ -507,6 +507,12 @@ public final class Settings {
             "android.settings.FINGERPRINT_ENROLL";
 
     /**
+         * Whether to show VoLTE icon or not
+         * @hide
+         */
+        public static final String SHOW_VOLTE_ICON = "volte_icon";
+
+    /**
      * Activity Action: Show settings to allow configuration of cast endpoints.
      * <p>
      * In some cases, a matching Activity may not exist, so ensure you
