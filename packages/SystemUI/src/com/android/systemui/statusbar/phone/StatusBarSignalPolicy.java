@@ -98,7 +98,6 @@ public class StatusBarSignalPolicy implements NetworkControllerImpl.SignalCallba
 
         TelephonyExtUtils.getInstance(context).addListener(this);
 
-        Dependency.get(TunerService.class).addTunable(this, StatusBarIconController.ICON_BLACKLIST);
     }
 
     @Override
